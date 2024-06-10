@@ -1,0 +1,18 @@
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://kdizzle:kdizzle@100.100.141.53:5432/blog_db"
+}
+
+generator db {
+  provider = "go run github.com/steebcehn/prisma-client-go"
+}
+
+model Blog {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  title       String
+  published   Boolean  @default(false)
+  description String?
+  content     String
+}
